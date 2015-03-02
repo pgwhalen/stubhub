@@ -17,6 +17,6 @@ def get_event_info(event_id):
 
 def get_listings_for_event(event_id):
 	url = api_url + '/search/inventory/v1'
-	query = {'eventId': event_id}
+	query = {'eventId': event_id, 'rows': 10000}
 	r = requests.get(url, params=query, headers=headers)
 	return r.json()

@@ -12,7 +12,7 @@ import stubhub_api
 events = MongoClient(configs.mongo_conn).stubhub.events
 
 def store_new_event(event_id):
-	event = get_event_info(event_id)	
+	event = stubhub_api.get_event_info(event_id)	
 
 	new_event = {
 		'id': event['id'],

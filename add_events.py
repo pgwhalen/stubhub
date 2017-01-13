@@ -4,6 +4,7 @@ import json
 from datetime import datetime
 import sys
 import dateutil.parser
+import argparse
 
 # me
 import configs
@@ -38,11 +39,13 @@ def store_new_event(event_id):
 	print "Added event " + str(event_id)
 
 if __name__ == "__main__":
-	event_ids = []
-	for line in sys.stdin:
-		event_ids.append(int(line))
+	parser = argparse.ArgumentParser(usage='', description='Look up event IDs in Stubhub\'s API',
+			epilog='')
+	parser.add_argument("ids", action="append", nargs="*")
+	args = parser.parse_args()
 
-	for event_id in event_ids:
+	for event_id in args.ids[0]:
+		event_id = int(event_id)
 		store_new_event(event_id)
 
 	print "Done adding events"
